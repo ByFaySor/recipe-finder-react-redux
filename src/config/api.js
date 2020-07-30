@@ -19,10 +19,10 @@ const axiosRun = (endpoint, parameters) => {
   return axiosInstance.get(`${endpoint}${parameterApiKey}${parameters}`);
 }
 // Recetas
-API.getRandomRecipes = limit => axiosRun(`random`, `number=${limit}&addRecipeInformation=true`);
+API.getRandomRecipes = limit => axiosRun(`random`, `number=${limit}&addRecipeInformation=true&fillIngredients=true`);
 API.getRecipes = ({ query, limit, filter }) => axiosRun(
   `complexSearch`,
-  `query=${query}&number=${limit}${filter}&addRecipeInformation=true`
+  `query=${query}&number=${limit}${filter}&addRecipeInformation=true&fillIngredients=true`
 );
 API.getSearchRecipe = async recipe => {
   const filterButtonValue = (recipe || `All`).toLocaleLowerCase();
