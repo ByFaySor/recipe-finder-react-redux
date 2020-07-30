@@ -6,6 +6,11 @@ import {
   Badge
 } from 'reactstrap';
 
+const styleLinkTo = {
+  color: `#007bff`,
+  cursor: `pointer`,
+};
+
 function ListResult({
   items,
   onLink,
@@ -21,30 +26,31 @@ function ListResult({
             {items.map(item => (
               <Col md={3} key={`search__recipe-${item.id}`}>
                 <Card>
-                  <a
-                    href="#top"
+                  <CardImg
+                    src={item.image}
+                    top
+                    width="100%"
+                    alt={item.title}
+                    style={styleLinkTo}
                     onClick={() => onLink(item)}
-                  >
-                    <CardImg
-                      src={item.image}
-                      top
-                      width="100%"
-                      alt={item.title}
-                    />
-                  </a>
+                  />
                   <CardBody>
-                    <a
-                      href="#top"
+                    <CardTitle
+                      style={styleLinkTo}
                       onClick={() => onLink(item)}
                     >
-                      <CardTitle>
-                        {item.title}
-                      </CardTitle>
-                    </a>
+                      {item.title}
+                    </CardTitle>
                   </CardBody>
                   <CardFooter>
                     {item.dishTypes.map(dishType => (
-                      <Badge color="primary" pill>{dishType}</Badge>
+                      <Badge
+                        key={`card__footer-${item.id}-${dishType}`}
+                        color="primary"
+                        pill
+                      >
+                        {dishType}
+                      </Badge>
                     ))}
                   </CardFooter>
                 </Card>

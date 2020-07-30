@@ -6,6 +6,11 @@ import {
   Badge
 } from 'reactstrap';
 
+const styleLinkTo = {
+  color: `#007bff`,
+  cursor: `pointer`,
+};
+
 export function Recipe({
   selectedRecipe,
   ...props
@@ -33,19 +38,24 @@ export function Recipe({
             />
             <Col md={12}>
               {selectedRecipe.dishTypes.map(dishType => (
-                <Badge color="primary" pill>{dishType}</Badge>
+                <Badge
+                  key={`detail_card__footer-${selectedRecipe.id}-${dishType}`}
+                  color="primary"
+                  pill
+                >
+                  {dishType}
+                </Badge>
               ))}
             </Col>
           </Col>
           <Col md={9}>
             <h2>{selectedRecipe.title}</h2>
-            <a
-              href="#top"
-              title="Home"
+            <p
+              style={styleLinkTo}
               onClick={() => toHome()}
             >
               Regresar
-            </a>
+            </p>
             <h3>Resumen</h3>
             <div
               dangerouslySetInnerHTML={{
@@ -63,7 +73,7 @@ export function Recipe({
             <h3>Ingredientes</h3>
             <ul>
               {selectedRecipe.extendedIngredients.map(ingredient => (
-                <li>{ingredient.name}</li>
+                <li key={`ingredient-${ingredient.name}`}>{ingredient.name}</li>
               ))}
             </ul>
           </Col>
